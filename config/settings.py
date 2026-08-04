@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-8!0)219$&_@dz474$kiu9$%92xiq%j)9_4&pte68bxcml$m*(d
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = "accounts.User"
 
 
 # Application definition
@@ -37,7 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Project apps
+    'core',
     'accounts',
+    'resumes',
+    'interviews',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Media files (User uploads: profile images, resumes)
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
