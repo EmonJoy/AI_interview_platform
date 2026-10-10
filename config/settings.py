@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from decouple import config
 
-from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,16 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
-
-
+SECRET_KEY = config(
+    "SECRET_KEY",
+    default="django-insecure-8!0)219$&_@dz474$kiu9$%92xiq%j)9_4&pte68bxcml$m*(d",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool)
+DEBUG = config("DEBUG", default=True, cast=bool)
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
-    cast=lambda v: [host.strip() for host in v.split(",")]
+    default="127.0.0.1,localhost",
+    cast=lambda v: [host.strip() for host in v.split(",") if host.strip()],
 )
 AUTH_USER_MODEL = "accounts.User"
 
